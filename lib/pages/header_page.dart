@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HeaderPage extends StatelessWidget {
   @override
@@ -51,7 +52,7 @@ class HeaderPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 3,
                   padding: const EdgeInsets.only(top: 25),
                   child: Text(
-                    'Fullstack Software Developer with a small preference for mobile and front-end development. Experience in various techniques, including .NET (core), React Native, Flutter, Angular, Express, C#, and other web- and mobile platforms. Currently happily working as a Flutter developer at Dutch Coding Company. Graduated at Avans University of Applied Sciences with a Bachelor of Science in information technology. Eager of learning new and exciting techniques! ',
+                    'Fullstack Software Developer with a small preference for mobile and front-end development. Experience in various techniques, including .NET (core), React Native, Flutter, Angular, Express, C#, and other web- and mobile platforms. Currently working as a Flutter developer at Dutch Coding Company. Graduated at Avans University of Applied Sciences with a Bachelor of Science in information technology. Eager of learning new and exciting techniques! ',
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2
@@ -68,7 +69,12 @@ class HeaderPage extends StatelessWidget {
                   color: Colors.transparent,
                   textColor: Colors.white,
                   padding: EdgeInsets.all(8.0),
-                  onPressed: () {},
+                  onPressed: () async {
+                    const String url = 'mailto:stijn@dcc.team';
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    }
+                  },
                   child: Text(
                     'Contact',
                     style: Theme.of(context)
