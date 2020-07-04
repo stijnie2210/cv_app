@@ -2,6 +2,7 @@ import 'package:cv_app/pages/contact_page.dart';
 import 'package:cv_app/pages/experience_page.dart';
 import 'package:cv_app/pages/header_page.dart';
 import 'package:cv_app/pages/skills_page.dart';
+import 'package:cv_app/widgets/bar_button.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,13 +18,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
-          title: Text(
-            'Stijn Mommersteeg',
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1
-                .copyWith(color: Colors.white),
-          ),
+          title: MediaQuery.of(context).size.width > 600
+              ? Text(
+                  'Stijn Mommersteeg',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      .copyWith(color: Colors.white),
+                )
+              : null,
           leading: CircleAvatar(
             backgroundColor: Colors.white,
             child: Text(
@@ -35,47 +38,20 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          FlatButton.icon(
-            icon: Icon(
-              Icons.home,
-              color: Theme.of(context).iconTheme.color,
-            ),
+          BarButton(
+            icon: Icons.home,
             onPressed: () => scrollToPosition(0),
-            label: Text(
-              'Home',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2
-                  .copyWith(color: Colors.white),
-            ),
+            text: 'Home',
           ),
-          FlatButton.icon(
-            icon: Icon(
-              Icons.code,
-              color: Theme.of(context).iconTheme.color,
-            ),
+          BarButton(
+            icon: Icons.code,
             onPressed: () => scrollToPosition(500),
-            label: Text(
-              'Experience',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2
-                  .copyWith(color: Colors.white),
-            ),
+            text: 'Experience',
           ),
-          FlatButton.icon(
-            icon: Icon(
-              Icons.email,
-              color: Theme.of(context).iconTheme.color,
-            ),
+          BarButton(
+            icon: Icons.email,
             onPressed: () => scrollToPosition(1000),
-            label: Text(
-              'Contact me',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2
-                  .copyWith(color: Colors.white),
-            ),
+            text: 'Contact me',
           ),
         ],
       ),
@@ -83,7 +59,6 @@ class _HomePageState extends State<HomePage> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: ListView(
-          shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           controller: scrollController,
           children: [
